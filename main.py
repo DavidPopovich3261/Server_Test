@@ -14,6 +14,16 @@ class Caesar(BaseModel):
 class Fence(BaseModel):
     text:str
 
+@app.get("/test")
+def test():
+    return json.dumps({"msg":"hi from test"})
+
+@app.get("/test/{name}")
+def name(name):
+    with open("names.txt","a") as f:
+        f.write(f"{name}\n")
+    return json.dumps({"msg":"saved user"})
+
 
 
 @app.post("/caesar")
